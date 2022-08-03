@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "unlimited.litehacks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinClientConnection"
+  ],
+  "client": [
+    "MixinClientWorld",
+    "MixinInGameHud",
+    "MixinKeyboard",
+    "MixinMinecraftClient",
+    "MixinPlayerClientEntity",
+    "MixinRenderTickCounter",
+    "MixinTitleScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

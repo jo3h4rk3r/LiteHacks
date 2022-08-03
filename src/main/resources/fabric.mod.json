@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "litehacks",
+  "version": "${version}",
+  "name": "Litehacks",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/litehacks/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "unlimited.litehacks.client.LitehacksClient"
+    ],
+    "main": [
+      "unlimited.litehacks.Litehacks"
+    ]
+  },
+  "mixins": [
+    "litehacks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.8",
+    "fabric": "*",
+    "minecraft": "1.19"
+  }
+}
