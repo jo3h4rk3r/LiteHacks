@@ -1,0 +1,2 @@
+# LiteHacks
+ Adds cheats 
