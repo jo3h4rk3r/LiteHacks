@@ -1,4 +1,4 @@
-package unlimited.litehacks.mods.movement;
+package unlimited.litehacks.mods.world;
 
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;

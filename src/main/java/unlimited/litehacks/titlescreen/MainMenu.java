@@ -64,7 +64,7 @@ public class MainMenu extends Screen {
        // drawStringWithShadow(matrices, this.textRenderer, "L I T E H A C K S", (x + w/2 - 106)/3, (y + h/4 - 1)/3, getRainbow(1,2,10,0));
 
         this.renderBackground(matrices);
-        fill(matrices, 0,0,0,0,0);
+        //fill(matrices, 0,0,0,0,0);
 
         drawTextWithShadow(matrices, mc.textRenderer, Text.literal("LiteHacks v1.0 fabric 1.19"), 10, 10, Color.WHITE.getRGB());
 

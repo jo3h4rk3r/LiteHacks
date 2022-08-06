@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import unlimited.litehacks.mods.movement.SkyColor;
+import unlimited.litehacks.mods.render.SkyColor;
 
 import java.awt.*;
 

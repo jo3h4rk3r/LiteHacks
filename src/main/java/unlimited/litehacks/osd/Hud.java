@@ -2,20 +2,25 @@ package unlimited.litehacks.osd;
 
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.network.Packet;
+import net.minecraft.network.packet.s2c.play.PlayPingS2CPacket;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import unlimited.litehacks.gui.clickgui.ClickGui;
 import unlimited.litehacks.mods.Module;
 import unlimited.litehacks.mods.ModuleManager;
-import unlimited.litehacks.mods.movement.Timer;
+import unlimited.litehacks.util.FabricReflect;
 
 import java.awt.*;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
@@ -24,13 +29,50 @@ public class Hud {
     public static long lastPacket = 0;
     private static double rawTps = 20;
     private static int counter = 0;
+    private static String ping = "null";
 
     public static void render(MatrixStack matrix, float tickDelta) {
-        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks v1.0 §ffabric 1.19", 10, 10, -1);
-        mc.textRenderer.drawWithShadow(matrix, "§3§lTPS: " + tps, 10, 30, -1);
-        mc.textRenderer.drawWithShadow(matrix, mc.fpsDebugString, 200, 10, -1);
+        int fps = (int) FabricReflect.getFieldValue(MinecraftClient.getInstance(), "field_1738", "currentFps");
+        int time = (int) (System.currentTimeMillis() - lastPacket);
+        assert mc.player != null;
 
-            int time = (int) (System.currentTimeMillis() - lastPacket);
+
+
+
+
+        Vec3d vec = mc.player.getPos();
+        BlockPos pos = mc.player.getBlockPos();
+        assert mc.world != null;
+        boolean nether = mc.world.getRegistryKey().getValue().getPath().contains("nether");
+        BlockPos pos2 = nether ? new BlockPos(vec.getX() * 8, vec.getY(), vec.getZ() * 8)
+                : new BlockPos(vec.getX() / 8, vec.getY(), vec.getZ() / 8);
+
+        String playerPos = "§9POS: " + (nether ? "\u00a74" : "\u00a7b") + pos.getX() + " " + pos.getY() + " " + pos.getZ()
+                + " \u00a77[" + (nether ? "\u00a7b" : "\u00a74") + pos2.getX() + " " + pos2.getY() + " " + pos2.getZ() + "\u00a77]";
+        PlayerListEntry playerEntry = mc.player.networkHandler.getPlayerListEntry(mc.player.getGameProfile().getId());
+
+        int tx = (int) mc.player.networkHandler.getConnection().getAveragePacketsSent();
+        int rx = (int) mc.player.networkHandler.getConnection().getAveragePacketsReceived();
+        int latency = playerEntry == null ? 0 : playerEntry.getLatency();
+        if (latency < 100) ping = "§a" + latency + "ms";
+        if (latency > 100) ping = "§6" + latency + "ms";
+        if (latency > 200) ping = "§c" + latency + "ms";
+        if (latency > 400) ping = "§4" + latency + "ms";
+
+
+
+
+
+        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks v1.0 §ffabric 1.19", 10, 10, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§b§lFPS: §f" + fps, 10, 30, -1);
+      //  mc.textRenderer.drawWithShadow(matrix, "§f§m              ", 10, 36, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§3§lTPS: " + tps, 10, 50, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§3§lPING: " + ping, 10, 60, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§9§lTX: §f" + tx, 10, 80, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§9§lRX: §f" + rx, 10, 90, -1);
+        mc.textRenderer.drawWithShadow(matrix, playerPos, mc.getWindow().getScaledWidth() / 2 - 72, 10, -1);
+       // mc.textRenderer.drawWithShadow(matrix, mc.fpsDebugString, 200, 10, -1);
+
            // if (time > 7500) time = 1200;
             if (time >= 1000) {
                 counter++;

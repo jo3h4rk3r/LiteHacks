@@ -11,12 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import unlimited.litehacks.keybinds.KeybindingHandler;
 import unlimited.litehacks.mods.Module;
 import unlimited.litehacks.mods.ModuleManager;
-import unlimited.litehacks.mods.movement.Timer;
+import unlimited.litehacks.mods.world.Timer;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.util.Arrays;
 import java.util.List;
 
-import static unlimited.litehacks.mods.movement.Timer.TimerActive;
+import static unlimited.litehacks.mods.world.Timer.TimerActive;
 
 
 @Mixin(RenderTickCounter.class)
@@ -33,8 +34,13 @@ public class MixinRenderTickCounter {
 
 
 
+        if (new Timer().isEnabled()) {
+
+            System.out.println("test 2");
+        }
 
         if (TimerActive) {
+            System.out.println("test");
             this.lastFrameDuration = (float) (((timeMillis - this.prevTimeMillis) / this.tickTime)
                     * Timer.tickAmount.getValue());
             this.prevTimeMillis = timeMillis;
