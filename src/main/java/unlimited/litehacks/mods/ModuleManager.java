@@ -1,6 +1,7 @@
 package unlimited.litehacks.mods;
 
 import unlimited.litehacks.mods.combat.KillAura;
+import unlimited.litehacks.mods.exploit.Clicker;
 import unlimited.litehacks.mods.exploit.DeathExplorer;
 import unlimited.litehacks.mods.exploit.PlayerCrasher;
 import unlimited.litehacks.mods.exploit.ServerCrasher;
@@ -8,6 +9,8 @@ import unlimited.litehacks.mods.movement.*;
 import unlimited.litehacks.mods.Module.Category;
 import unlimited.litehacks.mods.render.NightVision;
 import unlimited.litehacks.mods.render.SkyColor;
+import unlimited.litehacks.mods.render.Tracers;
+import unlimited.litehacks.mods.render.UIColor;
 import unlimited.litehacks.mods.world.SmartTrees;
 import unlimited.litehacks.mods.world.Timer;
 
@@ -64,6 +67,12 @@ public class ModuleManager {
         modules.add(new Timer());
         modules.add(new ElytraFly());
         modules.add(new NightVision());
+        modules.add(new Knockback());
+        modules.add(new NoFall());
+        modules.add(new Tracers());
+        modules.add(new Follow());
+        modules.add(new UIColor());
+        modules.add(new Clicker());
 
     }
 

@@ -1,6 +1,10 @@
 package unlimited.litehacks.mods;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
+import unlimited.litehacks.mods.render.Tracers;
 import unlimited.litehacks.mods.settings.Setting;
 
 import java.util.ArrayList;
@@ -118,6 +122,7 @@ public class Module {
         this.category = category;
     }
 
+
     public enum Category {
         RENDER("RENDER"),
         WORLD("WORLD"),
@@ -128,11 +133,15 @@ public class Module {
 
         public String name;
 
-        private Category(String name) {
+        Category(String name) {
             this.name = name;
         }
 
     }
+
+
+
+
 
 
 

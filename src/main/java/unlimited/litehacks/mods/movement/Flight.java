@@ -36,7 +36,7 @@ public class Flight extends Module {
     @Override
     public void onTick() {
         if (mc.player != null) {
-            mc.player.getAbilities().setFlySpeed((float) (flySpeed.getValueFloat()));
+            mc.player.getAbilities().setFlySpeed((flySpeed.getValueFloat()));
             mc.player.getAbilities().allowFlying = true;
         }
         super.onTick();

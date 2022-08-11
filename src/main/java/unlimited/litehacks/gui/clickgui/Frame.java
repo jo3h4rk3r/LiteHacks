@@ -3,15 +3,19 @@ package unlimited.litehacks.gui.clickgui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import unlimited.litehacks.gui.clickgui.setting.Component;
 import unlimited.litehacks.mods.Module;
 import unlimited.litehacks.mods.Module.Category;
 import unlimited.litehacks.mods.ModuleManager;
+import unlimited.litehacks.mods.render.UIColor;
 
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static unlimited.litehacks.mods.render.UIColor.*;
 
 public class Frame {
 
@@ -30,7 +34,7 @@ public class Frame {
         this.width = width;
         this.height = height;
         this.dragging = false;
-        this.extended = false;
+        this.extended = true;
 
         buttons = new ArrayList<>();
 
@@ -43,12 +47,15 @@ public class Frame {
 
 
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        DrawableHelper.fill(matrix, x, y, x + width, y + height, Color.BLACK.getRGB());
+        int TABColor = Color.getHSBColor(tabred, tabgreen, tabblue).getRGB();
+        DrawableHelper.fill(matrix, x, y, x + width, y + height, TABColor);
         int offset =  ((height / 2) - mc.textRenderer.fontHeight / 2);
 
 
         mc.textRenderer.drawWithShadow(matrix, category.name, x + (offset), y + (offset), -1);
         mc.textRenderer.drawWithShadow(matrix, extended ? "-" : "+", x + width - ((height / 2) - mc.textRenderer.fontHeight / 2) - 2 - mc.textRenderer.getWidth("+"), y + (offset), -1);
+
+        mc.textRenderer.drawWithShadow(matrix, Text.literal("Press 'ESC' to exit gui"), width / 4 + 450, height / 2 + 300, -1);
 
         if (extended) {
             for (ModuleButton button : buttons) {

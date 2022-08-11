@@ -12,7 +12,7 @@ public class MixinMinecraftClient {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     public void tick(CallbackInfo ci){
-        KeybindingHandler.INSTANCE.onTick();
+        //KeybindingHandler.INSTANCE.onTick();
 
     }
 
