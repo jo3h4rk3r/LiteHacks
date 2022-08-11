@@ -9,7 +9,7 @@ import unlimited.litehacks.mods.settings.NumberSetting;
 
 public class Flight extends Module {
 
-    public NumberSetting flySpeed = new NumberSetting("Speed", 0, 10, 1, 0.1);
+    public NumberSetting flySpeed = new NumberSetting("Speed", 0, 1, 0.1, 0.1);
     public BooleanSetting antiKick = new BooleanSetting("Anti-Kick", true);
     public ModeSetting testMode = new ModeSetting("Mode", "Test", "Test", "Test2", "Test3");
 
