@@ -69,7 +69,7 @@ public class MainMenu extends Screen {
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         //ClickGui.fill(matrices, 20, 20, 1, 1, -1);
         this.renderBackground(matrices);
-        drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: v1.0 fabric 1.19"), 10, 10, Color.WHITE.getRGB());
+        drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: v1.0 fabric 1.19.2"), 10, 10, Color.WHITE.getRGB());
         renderTitle(matrices, mouseX, mouseY);
         int copyWidth = this.textRenderer.getWidth("Copyright Mojang AB. Do not distribute!") + 2;
         textRenderer.drawWithShadow(matrices, "Copyright Mojang AB. Do not distribute!", width - copyWidth, height - 13, -1);
