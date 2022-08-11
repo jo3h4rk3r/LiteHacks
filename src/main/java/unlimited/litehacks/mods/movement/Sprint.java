@@ -10,8 +10,9 @@ public class Sprint extends Module {
 
     @Override
     public void onTick() {
-        assert mc.player != null;
-        mc.player.setSprinting(true);
+        if (mc.player != null) {
+            mc.player.setSprinting(true);
+        }
         super.onTick();
     }
 }

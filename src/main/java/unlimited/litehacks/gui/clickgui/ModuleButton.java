@@ -17,6 +17,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static unlimited.litehacks.mods.render.UIColor.*;
+
 public class ModuleButton {
 
     public Module module;
@@ -53,7 +55,7 @@ public class ModuleButton {
 
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
         DrawableHelper.fill(matrix, parent.x, parent.y + offset,
-                parent.x + parent.width, parent.y + offset + parent.height, new Color(0, 0, 0, 160).getRGB());
+                parent.x + parent.width, parent.y + offset + parent.height, new Color((int) extendedred, (int) extendedgreen, (int) extendedblue, 160).getRGB());
         int BToffset =  ((parent.height / 2) - parent.mc.textRenderer.fontHeight / 2);
 
 

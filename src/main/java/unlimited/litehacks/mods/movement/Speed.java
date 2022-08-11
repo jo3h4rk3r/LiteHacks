@@ -34,7 +34,7 @@ public class Speed extends Module {
 
     @Override
     public void onTick() {
-        assert mc.player != null;
+        if (mc.player != null) {
 
         if (speedSetting.isMode("Strafe")) {
             if ((mc.player.forwardSpeed != 0 || mc.player.sidewaysSpeed != 0) /*&& mc.player.isOnGround()*/) {
@@ -111,6 +111,7 @@ public class Speed extends Module {
                     mc.player.setSprinting(true);
                 }
             }
+        }
 
                 super.onTick();
         }

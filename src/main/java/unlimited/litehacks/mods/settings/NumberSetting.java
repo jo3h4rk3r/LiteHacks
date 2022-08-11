@@ -43,10 +43,15 @@ public class NumberSetting extends Setting {
         this.value = value;
     }
 
+
+
     public void increment(boolean positive) {
         if (positive) setValue(getValue() + getIncrement());
         else setValue(getValue() - getIncrement());
     }
+
+
+
 
     public double getMin() {
         return min;

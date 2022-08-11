@@ -28,9 +28,6 @@ public class Slider extends Component {
                 parent.parent.x + parent.parent.width,
                 parent.parent.y + parent.offset + offset + parent.parent.height, new Color(0, 0, 0, 120).getRGB());
 
-
-
-
         double diff = Math.min(parent.parent.width, Math.max(0, mouseX - parent.parent.x));
         int renderWidth = (int) (parent.parent.width * (numSet.getValue() - numSet.getMin()) / (numSet.getMax() - numSet.getMin()));
 
@@ -43,6 +40,7 @@ public class Slider extends Component {
 
             if (diff == 0) {
                 numSet.setValue(numSet.getMin());
+                //numSet.increment(true);
             } else {
                 numSet.setValue(roundToPlace(((diff / parent.parent.width) * (numSet.getMax() - numSet.getMin() + numSet.getMin())), 2));
             }
@@ -68,6 +66,8 @@ public class Slider extends Component {
         sliding = false;
         super.mouseReleased(mouseX, mouseY, button);
     }
+
+
 
     private double roundToPlace(double value, int place) {
         if (place < 0) {

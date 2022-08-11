@@ -23,6 +23,7 @@ public class Timer extends Module {
     public void onEnable() {
         assert mc.player != null;
         TimerActive = true;
+        super.onEnable();
     }
 
     @Override

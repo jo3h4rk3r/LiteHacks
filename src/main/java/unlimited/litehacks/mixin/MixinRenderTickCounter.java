@@ -34,13 +34,12 @@ public class MixinRenderTickCounter {
 
 
 
-        if (new Timer().isEnabled()) {
+        if (enabled.contains(new Timer().isEnabled())) {
 
             System.out.println("test 2");
         }
 
         if (TimerActive) {
-            System.out.println("test");
             this.lastFrameDuration = (float) (((timeMillis - this.prevTimeMillis) / this.tickTime)
                     * Timer.tickAmount.getValue());
             this.prevTimeMillis = timeMillis;
