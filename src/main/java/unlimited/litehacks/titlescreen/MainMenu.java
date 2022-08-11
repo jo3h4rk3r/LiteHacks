@@ -67,7 +67,6 @@ public class MainMenu extends Screen {
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        //ClickGui.fill(matrices, 20, 20, 1, 1, -1);
         this.renderBackground(matrices);
         drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: v1.0 fabric 1.19.2"), 10, 10, Color.WHITE.getRGB());
         renderTitle(matrices, mouseX, mouseY);
