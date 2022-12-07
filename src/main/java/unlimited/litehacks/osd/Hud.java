@@ -63,7 +63,7 @@ public class Hud {
 
 
 
-        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks v1.0", 10, 10, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks v1.0.1", 10, 10, -1);
         mc.textRenderer.drawWithShadow(matrix, "§b§lFPS: §f" + fps, 10, 30, -1);
       //  mc.textRenderer.drawWithShadow(matrix, "§f§m              ", 10, 36, -1);
         mc.textRenderer.drawWithShadow(matrix, "§3§lTPS: " + tps, 10, 50, -1);
