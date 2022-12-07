@@ -16,6 +16,7 @@ import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import unlimited.litehacks.gui.clickgui.ClickGui;
 import unlimited.litehacks.mods.Module;
 import unlimited.litehacks.mods.settings.NumberSetting;
