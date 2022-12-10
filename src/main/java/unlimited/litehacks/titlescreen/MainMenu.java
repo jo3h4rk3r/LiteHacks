@@ -1,5 +1,6 @@
 package unlimited.litehacks.titlescreen;
 
+import net.minecraft.GameVersion;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
@@ -19,6 +20,9 @@ import unlimited.litehacks.gui.clickgui.ClickGui;
 import java.awt.*;
 import java.util.List;
 
+import static unlimited.litehacks.Litehacks.ClientVersion;
+import static unlimited.litehacks.Litehacks.VERSION;
+
 public class MainMenu extends Screen {
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -32,28 +36,46 @@ public class MainMenu extends Screen {
 
 
         int l = this.height / 4 + 48;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l, 200, 20, Text.translatable("menu.singleplayer"), (button) -> {
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.singleplayer"), (button) -> {
             assert this.client != null;
             this.client.setScreen(new SelectWorldScreen(this));
-        }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l + 25, 200, 20, Text.translatable("menu.multiplayer"), (button) -> {
+        }).dimensions(this.width / 2 - 100, l, 200, 20).build());
+
+
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.multiplayer"), (button) -> {
             assert this.client != null;
             this.client.setScreen(new MultiplayerScreen(this));
-        }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l + 45 + 12, 98, 20, Text.translatable("menu.options"), (button) -> {
+        }).dimensions(this.width / 2 - 100, l + 25, 200, 20).build());
+
+
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.options"), (button) -> {
             assert this.client != null;
             this.client.setScreen(new OptionsScreen(this, this.client.options));
-        }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 2, l + 45 + 12, 98, 20, Text.translatable("menu.quit"), (button) -> {
+        }).dimensions(this.width / 2 - 100, l + 45 + 12, 98, 20).build());
+
+
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.quit"), (button) -> {
             assert this.client != null;
             this.client.scheduleStop();
-        }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l + 75 + 12, 98, 20, Text.translatable("Gui"), (button) -> {
+        }).dimensions(this.width / 2 + 2, l + 45 + 12, 98, 20).build());
+
+
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("Gui"), (button) -> {
             assert this.client != null;
             assert this.client.currentScreen != null;
             this.client.setScreen(new ClickGui());
 
-        }));
+        }).dimensions(this.width / 2 - 100, l + 75 + 12, 98, 20).build());
+
+
+
+        /*
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.options"), (button) -> {
+            assert this.client != null;
+            this.client.setScreen(new OptionsScreen(this, this.client.options));
+        }).dimensions(this.width / 2 - 100, 1 + 72 + 12, 98, 20).build());
+
+         */
 
 
         /*
@@ -67,9 +89,9 @@ public class MainMenu extends Screen {
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        //ClickGui.fill(matrices, 20, 20, 1, 1, -1);
         this.renderBackground(matrices);
-        drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: v1.0 fabric 1.19"), 10, 10, Color.WHITE.getRGB());
+        //drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: v1.0.1 fabric 1.19.3"), 10, 10, Color.WHITE.getRGB());
+        drawTextWithShadow(matrices, mc.textRenderer, Text.literal("version: " + ClientVersion + " fabric " + VERSION), 10, 10, Color.WHITE.getRGB());
         renderTitle(matrices, mouseX, mouseY);
         int copyWidth = this.textRenderer.getWidth("Copyright Mojang AB. Do not distribute!") + 2;
         textRenderer.drawWithShadow(matrices, "Copyright Mojang AB. Do not distribute!", width - copyWidth, height - 13, -1);

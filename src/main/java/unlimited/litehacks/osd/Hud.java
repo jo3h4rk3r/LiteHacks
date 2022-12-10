@@ -22,6 +22,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import static unlimited.litehacks.Litehacks.ClientVersion;
+
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
     private static long prevTime = 0;
@@ -63,7 +65,7 @@ public class Hud {
 
 
 
-        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks v1.0.1", 10, 10, -1);
+        mc.textRenderer.drawWithShadow(matrix, "§5§lLiteHacks " + ClientVersion, 10, 10, -1);
         mc.textRenderer.drawWithShadow(matrix, "§b§lFPS: §f" + fps, 10, 30, -1);
       //  mc.textRenderer.drawWithShadow(matrix, "§f§m              ", 10, 36, -1);
         mc.textRenderer.drawWithShadow(matrix, "§3§lTPS: " + tps, 10, 50, -1);

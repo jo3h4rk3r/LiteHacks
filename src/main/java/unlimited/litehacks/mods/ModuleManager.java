@@ -73,6 +73,7 @@ public class ModuleManager {
         modules.add(new Follow());
         modules.add(new UIColor());
         modules.add(new Clicker());
+        modules.add(new AutoWalk());
 
     }
 
