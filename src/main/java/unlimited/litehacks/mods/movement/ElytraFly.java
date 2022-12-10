@@ -16,7 +16,7 @@ public class ElytraFly extends Module {
     //public ModeSetting testMode = new ModeSetting("Mode", "Test", "Test", "Test2", "Test3");
 
     public ElytraFly() {
-        super("Elytra Fly", "Infinite elytra flight", Category.MOVEMENT);
+        super("ElytraFly", "Infinite elytra flight", Category.MOVEMENT);
         addSettings(elyFlySpeed, elyAntiKick);
     }
 

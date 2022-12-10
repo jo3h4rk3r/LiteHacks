@@ -1,6 +1,7 @@
 package unlimited.litehacks.mods.movement;
 
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
@@ -56,33 +57,39 @@ public class Speed extends Module {
 
             /* OnGround */
         } else if (speedSetting.isMode("onGround")) {
-            if (mc.options.jumpKey.isPressed() || mc.player.fallDistance > 0.25)
-                return;
 
-            double speeds = 0.85 + groundSpeed.getValueFloat() / 30;
 
-            if (jumping && mc.player.getY() >= mc.player.prevY + 0.399994D) {
-                mc.player.setVelocity(mc.player.getVelocity().x, -0.9, mc.player.getVelocity().z);
-                mc.player.setPos(mc.player.getX(), mc.player.prevY, mc.player.getZ());
-                jumping = false;
+            double speed = groundSpeed.getValueFloat();
+
+
+
+            Vec3d sideSide = new Vec3d(0, 0, speed).rotateY(-(float) Math.toRadians(mc.player.getYaw()));
+            Vec3d strafe = sideSide.rotateY((float) Math.toRadians(90));
+
+            Vec3d forward = new Vec3d(0, 0, speed).rotateY(-(float) Math.toRadians(mc.player.getYaw()));
+            Vec3d strafeForward= forward.rotateY((float) Math.toRadians(0));
+
+
+
+            if (mc.player.isOnGround()) {
+                if (mc.options.forwardKey.isPressed())
+                    mc.player.setVelocity(mc.player.getVelocity().add(strafeForward.x, 0, strafeForward.z));
+                if (mc.options.backKey.isPressed())
+                    mc.player.setVelocity(mc.player.getVelocity().add(-strafeForward.x, 0, -strafeForward.z));
+
+                if (mc.options.leftKey.isPressed())
+                    mc.player.setVelocity(mc.player.getVelocity().add(strafe.x, 0, strafe.z));
+                if (mc.options.rightKey.isPressed())
+                    mc.player.setVelocity(mc.player.getVelocity().add(-strafe.x, 0, -strafe.z));
             }
 
-            if (mc.player.forwardSpeed != 0.0F && !mc.player.horizontalCollision) {
-                if (mc.player.verticalCollision) {
-                    mc.player.setVelocity(mc.player.getVelocity().x * speeds, mc.player.getVelocity().y, mc.player.getVelocity().z * speeds);
-                    jumping = true;
-                    mc.player.jump();
-                    // 1.0379
-                }
 
-                if (jumping && mc.player.getY() >= mc.player.prevY + 0.399994D) {
-                    mc.player.setVelocity(mc.player.getVelocity().x, -100, mc.player.getVelocity().z);
-                    jumping = false;
-                }
 
-            }
 
-            /* MiniHop */
+
+            mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
+
+
         } else if (speedSetting.isMode("miniHop")) {
             {
                 if (mc.player.horizontalCollision || mc.options.jumpKey.isPressed() || mc.player.forwardSpeed == 0)

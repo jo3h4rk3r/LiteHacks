@@ -74,6 +74,8 @@ public class ModuleManager {
         modules.add(new UIColor());
         modules.add(new Clicker());
         modules.add(new AutoWalk());
+        modules.add(new BoatFly());
+        modules.add(new Climb());
 
     }
 
