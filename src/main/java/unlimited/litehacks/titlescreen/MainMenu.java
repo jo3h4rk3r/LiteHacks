@@ -108,7 +108,7 @@ public class MainMenu extends Screen {
                 h = height - height;
         matrix.push();
         matrix.scale(3, 3, 0);
-        drawStringWithShadow(matrix, this.textRenderer, "L I T E H A C K S", (x + w/2 - 106)/3, (y + h/4 - 1)/3, getRainbow(1, 2, 10, 0));
+        drawTextWithShadow(matrix, this.textRenderer, "L I T E H A C K S", (x + w/2 - 106)/3, (y + h/4 - 1)/3, getRainbow(1, 2, 10, 0));
         matrix.pop();
     }
 

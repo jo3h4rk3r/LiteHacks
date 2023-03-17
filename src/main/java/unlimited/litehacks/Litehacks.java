@@ -11,7 +11,7 @@ import java.util.logging.LogManager;
 public class Litehacks implements ModInitializer {
     public static Litehacks INSTANCE = new Litehacks();
     public static String VERSION = MinecraftVersion.create().getName();
-    public static String ClientVersion = "v1.0.1";
+    public static String ClientVersion = "v1.0.2";
 
     @Override
     public void onInitialize() {

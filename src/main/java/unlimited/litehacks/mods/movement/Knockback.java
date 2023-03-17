@@ -30,7 +30,7 @@ public class Knockback extends Module {
     @Override
     public void onDisable() {
         assert mc.player != null;
-        mc.player.knockbackVelocity = 0.5F;
+        mc.player.takeKnockback(0.5, 0.0, 0.0);
 
         super.onDisable();
     }
@@ -39,7 +39,7 @@ public class Knockback extends Module {
     public void onTick() {
         if (mc.player != null) {
 
-            mc.player.knockbackVelocity = velocity.getValueInt();
+            mc.player.takeKnockback(velocity.getValueFloat(), 0, 0);
             mc.player.setVelocity(velocity.getValueFloat(), velocity.getValueFloat(), velocity.getValueFloat());
             //mc.player.takeKnockback(velocity.getValue(), 0, 0);
 

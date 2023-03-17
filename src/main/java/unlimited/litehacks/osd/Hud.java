@@ -5,7 +5,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.*;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.PlayPingS2CPacket;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
@@ -46,8 +47,8 @@ public class Hud {
         BlockPos pos = mc.player.getBlockPos();
         assert mc.world != null;
         boolean nether = mc.world.getRegistryKey().getValue().getPath().contains("nether");
-        BlockPos pos2 = nether ? new BlockPos(vec.getX() * 8, vec.getY(), vec.getZ() * 8)
-                : new BlockPos(vec.getX() / 8, vec.getY(), vec.getZ() / 8);
+        BlockPos pos2 = nether ? new BlockPos((int)vec.getX() * 8, (int)vec.getY(), (int)vec.getZ() * 8)
+                : new BlockPos((int)vec.getX() / 8, (int)vec.getY(), (int)vec.getZ() / 8);
 
         String playerPos = "§9POS: " + (nether ? "\u00a74" : "\u00a7b") + pos.getX() + " " + pos.getY() + " " + pos.getZ()
                 + " \u00a77[" + (nether ? "\u00a7b" : "\u00a74") + pos2.getX() + " " + pos2.getY() + " " + pos2.getZ() + "\u00a77]";
@@ -112,7 +113,7 @@ public class Hud {
         return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
     }
 
-    public static void onPacket(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo ci) {
+    public static void onPacket(ChannelHandlerContext channelHandlerContext, Packet packet, CallbackInfo ci) {
         lastPacket = System.currentTimeMillis();
 
         if (packet instanceof WorldTimeUpdateS2CPacket) {

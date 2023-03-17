@@ -17,7 +17,7 @@ public class ui extends Screen {
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        drawCenteredText(matrices, mc.textRenderer, Text.literal("Test"), mouseX,mouseY, Color.WHITE.getRGB());
+        drawCenteredTextWithShadow(matrices, mc.textRenderer, Text.literal("Test"), mouseX,mouseY, Color.WHITE.getRGB());
 
     //    int l = this.height / 4 + 48;
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("menu.options"), (button) -> {
