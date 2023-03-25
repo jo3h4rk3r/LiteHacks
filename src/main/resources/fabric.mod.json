@@ -21,8 +21,8 @@
     "litehacks.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.17",
+    "fabricloader": ">=0.14.18",
     "fabric": "*",
-    "minecraft": "1.19.4"
+    "minecraft": "1.20-alpha.23.12.a"
   }
 }
